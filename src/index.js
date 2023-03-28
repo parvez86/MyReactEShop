@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import Router from './components/Router';
 import reportWebVitals from './reportWebVitals';
+import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
+import '../node_modules/font-awesome/css/font-awesome.min.css';
+import { Provider } from 'react-redux';
+import store from './components/redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+    {/* <App /> */}
+      <Router/>
+    </Provider>
   </React.StrictMode>
 );
 
