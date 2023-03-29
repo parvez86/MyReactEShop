@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import Navbar from '../Navbar'
 import Skeleton from 'react-loading-skeleton'
 // import { addCart } from '../redux/action'
@@ -10,12 +10,22 @@ const Product = () => {
     const {id} = useParams()
     const [product, setProduct] = useState()
     const [loading, setLoading] = useState(false)
+    const [isLogin, setIsLogin] = useState(
+        useSelector((state) => state.user.isLogin)
+    )
 
     // let componentMounted = true;
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const addProduct = (product) => {
-        dispatch(addItem(product))
+        if(!isLogin){
+            navigate('/login')
+        }
+        dispatch(addItem(product));
+        console.log('====================================');
+        console.log("add cart button is clicked");
+        console.log('====================================');
     }
 
     useEffect(() => {

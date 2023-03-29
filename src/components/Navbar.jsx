@@ -20,9 +20,7 @@ const Navbar = () => {
 
   const onLogout = () => {
     setIsLogin(dispatch(logout()))
-    if(!isLogin){
-        navigate('/login')
-    }
+    navigate('/login')
   }
   const getTotal = () => {
     let sum=0;  
@@ -37,11 +35,11 @@ const Navbar = () => {
 //     setTotal(getTotal());
 //   }, [])
 
-    useEffect(() => {
-        if(!isLogin){
-            navigate('/login')
-        }
-    },[])
+    // useEffect(() => {
+    //     if(!isLogin){
+    //         navigate('/login')
+    //     }
+    // },[])
   useEffect(() => {
     setTotal(getTotal());
   }, [products])
@@ -96,27 +94,34 @@ const Navbar = () => {
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form> */}
-                    <div className='buttons'>
+                    {/* <div className='buttons'> */}
                         {
                             isLogin? (
-                                <NavLink to='/login' className='btn btn-outline-light' onClick={onLogout}>
-                                    <i className='fa fa-sign-in'> Logout</i>
-                                </NavLink>
+
+                                <div className='buttons'>
+                                    <NavLink to='/login' className='btn btn-outline-light' onClick={onLogout}>
+                                        <i className='fa fa-sign-in'> Logout</i>
+                                    </NavLink>
+
+                                    <NavLink  to='/cart' className='btn btn-outline-light'>
+                                        <i className="fa fa-shopping-cart"> Cart({totlal})</i>
+                                    </NavLink>
+                                </div>
                             ):(
-                                <NavLink to='/login' className='btn btn-outline-light'>
-                                    <i className='fa fa-sign-in'> Login</i>
-                                </NavLink>
+                                <div className='buttons'>
+                                    <NavLink to='/login' className='btn btn-outline-light'>
+                                        <i className='fa fa-sign-in'> Login</i>
+                                    </NavLink>
+                                    <NavLink to='/register' className='btn btn-outline-light'>
+                                        <i className='fa fa-user-plus'> Register</i>
+                                    </NavLink>
+                                    <NavLink  to='/cart' className='btn btn-outline-light'>
+                                        <i className="fa fa-shopping-cart"> Cart({totlal})</i>
+                                    </NavLink>
+                                </div>
                             )
                         }
-
-                        <NavLink to='/register' className='btn btn-outline-light'>
-                            <i className='fa fa-user-plus'> Register</i>
-                        </NavLink>
-
-                        <NavLink  to='/cart' className='btn btn-outline-light'>
-                            <i className="fa fa-shopping-cart"> Cart({totlal})</i>
-                        </NavLink>
-                    </div>
+                    {/* </div> */}
                 </div>
             </div>
         </nav>

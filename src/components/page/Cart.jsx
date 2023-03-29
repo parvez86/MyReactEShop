@@ -1,13 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import Navbar from '../Navbar'
 import { addItem, delItem } from '../redux/cartSlice'
 
 const Cart = () => {
     const products = useSelector((state) => state.cart.products)
+    const isLogin = useSelector((state) => state.user.isLogin)
     console.log(products);
     const dispatch = useDispatch();
 
+    const navigate = useNavigate()
+    
+    useEffect(
+        () => {
+            if(!isLogin){
+                navigate('/login')
+            }
+        }, []
+    )
     const addProduct = (product) => {
         dispatch(addItem(product))
     }

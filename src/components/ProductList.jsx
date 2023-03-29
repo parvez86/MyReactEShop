@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { addItem } from './redux/cartSlice';
 
 const ProductList = () => {
@@ -8,8 +8,12 @@ const ProductList = () => {
     const [filter, setFilter] = useState(data);
     const [loading, setLoading] = useState(false);
     const [activCat, setActiveCat] = useState(1);
+    const [isLogin, setIsLogin] = useState(
+        useSelector((state) => state.user.isLogin)
+    )
 
     let dispatch = useDispatch()
+    const navigate = useNavigate()
 
     let componentMounted = true;
 
@@ -43,6 +47,9 @@ const ProductList = () => {
         console.log("filter: ", filter);
     }, [filter])
     const addProduct = (product) => {
+        if(!isLogin){
+            navigate('/login')
+        }
         dispatch(addItem(product))
     }
 
