@@ -1,4 +1,4 @@
-# MyRestArticleApp
+# EshppingCenter
 A React online shoppping application that displays various types of products. Users acan get & buy these products. The authentication and product data is stored using Redux Toolkit.
 
 Features
