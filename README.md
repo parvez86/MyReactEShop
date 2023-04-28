@@ -1,5 +1,5 @@
 # EshppingCenter
-A React online shoppping application that displays various types of products. Users acan get & buy these products. The authentication and product data is stored using Redux Toolkit.
+A React online shopping application that displays various types of products. Users can get & buy these products. The authentication and product data is stored using Redux Toolkit.
 
 Features
 =============
